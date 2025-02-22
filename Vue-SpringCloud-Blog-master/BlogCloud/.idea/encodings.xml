@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/blog-customer-user-feign/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/blog-eureka-highServer/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/blog-eureka-server/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/blog-getway-zuul-two/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/blog-getway-zuul/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/blog-hystrix-dashboard/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/blog-hystrix-turbine/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/blog-provider-user-es/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/blog-provider-user-member/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/blog-provider-user-message/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/blog-provider-user-pay/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/blog-provider-user-security/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/blog-provider-user-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/blog-provider-user-sign/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/blog-provider-user-upload/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/blog-provider-user/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/blog-zipkin-stream-es/src/main/java" charset="UTF-8" />
+  </component>
+</project>
