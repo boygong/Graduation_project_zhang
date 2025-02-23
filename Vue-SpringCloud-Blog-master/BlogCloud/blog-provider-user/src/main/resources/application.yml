@@ -4,14 +4,14 @@ server:
 eureka:
   client:
     serviceUrl:
-      #defaultZone: http://localhost:8761/eureka/  #设置与Eureka Server的交互地址，查询服务和注册服务都需要这个地址，多个地址可分隔使用.
-      defaultZone: http://whc:123@EurekaServerTwo:8011/eureka/,http://whc:123@EurekaServerOne:8010/eureka/  #最好是两者都注册
+      defaultZone: http://localhost:8761/eureka/  #设置与Eureka Server的交互地址，查询服务和注册服务都需要这个地址，多个地址可分隔使用.
+#      defaultZone: http://whc:123@EurekaServerTwo:8011/eureka/,http://whc:123@EurekaServerOne:8010/eureka/  #最好是两者都注册
   instance:
     prefer-ip-address: true
 
 spring:
   datasource:
-    url: jdbc:mysql://127.0.0.1/blog?useUnicode=true&characterEncoding=utf-8&useSSL=false
+    url: jdbc:mysql://127.0.0.1:3306/blog?useUnicode=true&characterEncoding=utf-8&useSSL=false
     username: root #mysql账号
     password: 123456 #mysql密码
     driver-class-name: com.mysql.jdbc.Driver
@@ -44,8 +44,8 @@ spring:
   # REDIS (RedisProperties)
   # Redis数据库索引（默认为0）
   redis:
-    host: localhost
-    port: 6379
+    host: 121.43.96.182
+    port: 15112
   zipkin:
     base-url: http://blog-zipkin-es/
   sleuth:
