@@ -13,9 +13,9 @@ public class TestAfsCheck {
 
     public int testLogin(IAcsTokenRequest iAcsTokenRequest) throws Exception{
         //YOUR ACCESS_KEY、YOUR ACCESS_SECRET请替换成您的阿里云accesskey id和secret
-        IClientProfile profile = DefaultProfile.getProfile("cn-hangzhou", "个人隐私", "个人隐私");
+        IClientProfile profile = DefaultProfile.getProfile("cn-beijing", "LTAI5tPAp9gPXzL1sgUhQh4Z", "nddTjq77eL1pwxKJ5dIT5j2ZT0PYJP");
         IAcsClient client = new DefaultAcsClient(profile);
-        DefaultProfile.addEndpoint("自行配置");
+        DefaultProfile.addEndpoint("cn-beijing","blog-zhangzx","oss-cn-beijing.aliyuncs.com");
 
         AuthenticateSigRequest request = new AuthenticateSigRequest();
         request.setSessionId(iAcsTokenRequest.getSessionId());// 必填参数，从前端获取，不可更改，android和ios只传这个参数即可
