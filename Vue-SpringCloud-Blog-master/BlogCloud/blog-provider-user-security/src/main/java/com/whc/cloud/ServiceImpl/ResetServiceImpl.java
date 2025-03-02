@@ -49,7 +49,9 @@ public class ResetServiceImpl implements ResetService {
     @Transactional(isolation = Isolation.READ_COMMITTED, propagation = Propagation.REQUIRED)
     public int checkEmail(String ssPhone, String ssYzm, String ssEmail, String username) {
         //先查询手机和验证码是否双向绑定(防止发送失败情况产生多余的验证码)
-        Jedis jedis = new Jedis("localhost", 6379);
+        //打开Redis
+            Jedis jedis = new Jedis("121.43.96.182", 15112,2000);
+            jedis.auth("123456");
         if (ssPhone.equals(jedis.get(ssYzm)) && ssYzm.equals(jedis.get(ssPhone))){
             //如果在Redis中存在双向绑定就更新手机号，并且邮箱没有被注册
             List<String> realEmail=userSecurityMapper.selectUsernameByEmail(ssEmail);
@@ -73,7 +75,9 @@ public class ResetServiceImpl implements ResetService {
     @Transactional(isolation = Isolation.READ_COMMITTED, propagation = Propagation.REQUIRED)
     public int updatePhone(String oldPhone, String phoneChangeYzm, String newPhone, String username) {
         //先查询手机和验证码是否双向绑定(防止发送失败情况产生多余的验证码)
-        Jedis jedis = new Jedis("localhost", 6379);
+        //打开Redis
+            Jedis jedis = new Jedis("121.43.96.182", 15112,2000);
+            jedis.auth("123456");
         if (oldPhone.equals(jedis.get(phoneChangeYzm)) && phoneChangeYzm.equals(jedis.get(oldPhone))){
             //如果双向绑定验证成功,则判定新手机号
             //判定新手机号是否存在被其他人注册
@@ -109,7 +113,9 @@ public class ResetServiceImpl implements ResetService {
     @Override
     @Transactional(isolation = Isolation.READ_COMMITTED, propagation = Propagation.REQUIRED)
     public int timeCheck(String resetName, String username) {
-        Jedis jedis = new Jedis("localhost", 6379);
+        //打开Redis
+            Jedis jedis = new Jedis("121.43.96.182", 15112,2000);
+            jedis.auth("123456");
         //姓名和username存在练习话放回不可用的凭证
         if (username.equals(jedis.get(resetName))){
             return FAILED;

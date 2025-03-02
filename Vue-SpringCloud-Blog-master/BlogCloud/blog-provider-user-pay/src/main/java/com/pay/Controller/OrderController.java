@@ -45,7 +45,9 @@ public class OrderController {
                             @RequestParam("total_amount") String total_amount, @RequestParam("body") String body,
                             @RequestParam("id") Long id) throws AlipayApiException {
         //7、商户订单号和ID绑定并且设置时间10分钟提供给异步通知使用(10分钟内完成支付)，Redis实现的延迟队列。
-        Jedis jedis = new Jedis("localhost", 6379);
+        //打开Redis
+            Jedis jedis = new Jedis("121.43.96.182", 15112,2000);
+            jedis.auth("123456");
         jedis.set(out_trade_no, id.toString());
         jedis.expire(out_trade_no, 600);
         //8、创建订单信息(等待交易状态)
@@ -80,7 +82,9 @@ public class OrderController {
             @RequestParam("body") String body,@RequestParam("id") Long id) throws AlipayApiException {
 
         //7、商户订单号和ID绑定并且设置时间10分钟提供给异步通知使用(10分钟内完成支付)
-        Jedis jedis = new Jedis("localhost", 6379);
+        //打开Redis
+            Jedis jedis = new Jedis("121.43.96.182", 15112,2000);
+            jedis.auth("123456");
         jedis.set(out_trade_no, id.toString());
         jedis.expire(out_trade_no, 600);
         //8、创建订单信息(等待交易状态)
@@ -180,7 +184,9 @@ public class OrderController {
                             @RequestParam("total_amount") String total_amount, @RequestParam("body") String body,
                             @RequestParam("id") Long id) throws AlipayApiException {
         //7、商户订单号和ID绑定并且设置时间10分钟提供给异步通知使用(10分钟内完成支付)，Redis实现的延迟队列。
-        Jedis jedis = new Jedis("localhost", 6379);
+        //打开Redis
+            Jedis jedis = new Jedis("121.43.96.182", 15112,2000);
+            jedis.auth("123456");
         jedis.set(out_trade_no, id.toString());
         jedis.expire(out_trade_no, 600);
         //8、创建订单信息(等待交易状态)

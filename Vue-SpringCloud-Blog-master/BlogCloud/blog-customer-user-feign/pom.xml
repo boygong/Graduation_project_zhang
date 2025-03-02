@@ -139,6 +139,11 @@
             <artifactId>aliyun-java-sdk-afs</artifactId>
             <version>1.0.1</version>
         </dependency>
+        <dependency>
+            <groupId>com.aliyun</groupId>
+            <artifactId>alibabacloud-captcha20230305</artifactId>
+            <version>1.0.1</version>
+        </dependency>
     </dependencies>
 
     <!-- 引入spring cloud的依赖 -->

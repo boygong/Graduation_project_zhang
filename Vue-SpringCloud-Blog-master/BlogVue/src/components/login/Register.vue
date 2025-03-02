@@ -179,7 +179,8 @@
               if (this.newUsername === '' || this.newPassword === '' || this.newPassword2 === '' ||
                   this.newPassword !== this.newPassword2 || !patterPassword.test(this.newPassword) ||
                   this.value === false || !patterName.test(this.newUsername)
-                  || this.aliToken === '' || this.sessionId === '' || this.sig === '') {
+                //   || this.aliToken === '' || this.sessionId === '' || this.sig === ''
+                ) {
                   if (this.newUsername === '' || this.newPassword === '' || this.newPassword2 === '') {
                       this.$message({
                           type: "error",
@@ -195,22 +196,24 @@
                           type: "error",
                           message: '用户名不符合',
                       })
-                  }else if (!patterName.test(this.newPassword)){
+                  }else if (!patterPassword.test(this.newPassword)){
                       this.$message({
                           type: "error",
                           message: '密码不符合长度要求',
                       })
-                  }else if (this.aliToken === '' || this.sessionId === '' || this.sig === '') {
-                      this.$message({
-                          type: "error",
-                          message: '请点进验证!',
-                      })
-                  } else {
+                  }
+                  //else if (this.aliToken === '' || this.sessionId === '' || this.sig === '') {
+                     // this.$message({
+                     //     type: "error",
+                    // message: '请点进验证!',
+                     // })
+                  //}
+                   /* else {
                       this.$message({
                           type: "error",
                           message: '请选择绿色',
                       })
-                  }
+                  } */
               } else {
                   this.$http.post('/whc/blog-customer-user/register',{
                       newUsername: this.newUsername,

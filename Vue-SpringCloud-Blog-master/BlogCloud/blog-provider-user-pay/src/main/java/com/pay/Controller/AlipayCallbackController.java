@@ -98,7 +98,9 @@ public class AlipayCallbackController {
                             try {
                                 Date date=new Date();
                                 //打开Jedis通过商户订单号找到ID给会员更新服务
-                                Jedis jedis = new Jedis("localhost", 6379);
+                                //打开Redis
+            Jedis jedis = new Jedis("121.43.96.182", 15112,2000);
+            jedis.auth("123456");
                                 Long id=Long.valueOf(jedis.get(params.get("out_trade_no")));
                                 jedis.del(params.get("out_trade_no"));
                                 //根据宇宙唯一订单号查询整个支付表(第二种延迟队列的方式，比Redis好用些)

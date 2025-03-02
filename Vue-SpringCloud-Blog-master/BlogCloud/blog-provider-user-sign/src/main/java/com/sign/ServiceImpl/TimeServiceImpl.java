@@ -32,7 +32,9 @@ public class TimeServiceImpl implements TimeService {
     @Transactional(isolation = Isolation.READ_COMMITTED, propagation = Propagation.REQUIRED)
     public int setTime(Long id){
         //先判定是否redis中是否存在限时凭证
-        Jedis jedis = new Jedis("localhost", 6379);
+        //打开Redis
+            Jedis jedis = new Jedis("121.43.96.182", 15112,2000);
+            jedis.auth("123456");
         if (jedis.get("Sign-"+id) == null) {
             //获取明天0点的时间并且设置限时凭证
             try {

@@ -49,7 +49,9 @@ public class AuthorizationInterceptor implements HandlerInterceptor {
           //String token = request.getParameter(httpHeaderName);//从URL上面获得TOKEN，用来测试.
             log.info("Get token from request is {} ", token);
             String username = "";
-            Jedis jedis = new Jedis("localhost", 6379);
+            //打开Redis
+            Jedis jedis = new Jedis("121.43.96.182", 15112,2000);
+            jedis.auth("123456");
             if (token != null && token.length() != 0) {
                 username = jedis.get(token);
                 log.info("Get username from Redis is {}", username);

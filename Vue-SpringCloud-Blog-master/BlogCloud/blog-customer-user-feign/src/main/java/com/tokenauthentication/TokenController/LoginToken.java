@@ -67,7 +67,9 @@ public class LoginToken {
             //生成主键id
             Long id=user.getId();
 
-            Jedis jedis = new Jedis("localhost", 6379);
+            //打开Redis
+            Jedis jedis = new Jedis("121.43.96.182", 15112,2000);
+            jedis.auth("123456");
 
             //Token的生成
             String token = tokenGenerator.generate(username, password);
@@ -101,11 +103,11 @@ public class LoginToken {
     //所有的登录请求都经这个Controller,这个是服务提供者.
     @CrossOrigin(origins = "http://localhost:8088")
     @RequestMapping(value = "/loginToken", method = RequestMethod.POST)
-    public ResponseTemplate loginToken (@RequestParam("username") String username, @RequestParam("password") String password, IAcsTokenRequest iAcsTokenRequest)throws Exception {
+    public ResponseTemplate loginToken (@RequestParam("username") String username, @RequestParam("password") String password, @RequestParam("captchaVerifyParam") String captchaVerifyParam)throws Exception {
 
-        logger.info(iAcsTokenRequest+"");
+        logger.info(captchaVerifyParam+"");
         TestAfsCheck testAfsCheck=new TestAfsCheck();
-        if (testAfsCheck.testLogin(iAcsTokenRequest)==0)
+        if (testAfsCheck.testLogin(captchaVerifyParam)==0)
         {
             //若存存在多次验证或者验证失败则返回"testFailed"
             return ResponseTemplate.builder()
@@ -132,7 +134,8 @@ public class LoginToken {
             Long id=user.getId();
 
             //打开Redis
-            Jedis jedis = new Jedis("localhost", 6379);
+            Jedis jedis = new Jedis("121.43.96.182", 15112,2000);
+            jedis.auth("123456");
 
             //删除之前存在的Token
             String tokenOld=jedis.get(username);

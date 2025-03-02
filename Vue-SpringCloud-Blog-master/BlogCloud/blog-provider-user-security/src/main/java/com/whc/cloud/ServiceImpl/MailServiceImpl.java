@@ -56,7 +56,9 @@ public class MailServiceImpl implements MailService {
     @Override
     @Transactional(isolation = Isolation.READ_COMMITTED, propagation = Propagation.REQUIRED)
     public int checkEmail(String email, String emailYzm,String username) {
-        Jedis jedis = new Jedis("localhost", 6379);
+        //打开Redis
+            Jedis jedis = new Jedis("121.43.96.182", 15112,2000);
+            jedis.auth("123456");
         //如果邮箱和验证码相等(双向绑定可以判断失败存入的验证码,双向保险)
         if (email.equals(jedis.get(emailYzm)) && emailYzm.equals(jedis.get(email))){
             //删除Redis中双向绑定的验证码
@@ -87,7 +89,9 @@ public class MailServiceImpl implements MailService {
     @Override
     @Transactional(isolation = Isolation.READ_COMMITTED, propagation = Propagation.REQUIRED)
     public int updatePassword(String chEmail, String passwordYzm, String chPassword, String username) {
-        Jedis jedis = new Jedis("localhost", 6379);
+        //打开Redis
+            Jedis jedis = new Jedis("121.43.96.182", 15112,2000);
+            jedis.auth("123456");
         //验证成功更新密码
         if (chEmail.equals(jedis.get(passwordYzm)) && passwordYzm.equals(jedis.get(chEmail))){
             //删除Redis中双向绑定的验证码

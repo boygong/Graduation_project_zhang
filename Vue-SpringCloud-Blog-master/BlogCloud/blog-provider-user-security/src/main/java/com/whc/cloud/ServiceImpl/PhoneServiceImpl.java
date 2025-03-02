@@ -59,7 +59,9 @@ public class PhoneServiceImpl implements PhoneService {
         //根据username查询手机号
         String securityPhone=userSecurityMapper.selectPhoneByUsername(username);
         //先查询手机和验证码是否双向绑定(防止发送失败情况产生多余的验证码)
-        Jedis jedis = new Jedis("localhost", 6379);
+        //打开Redis
+            Jedis jedis = new Jedis("121.43.96.182", 15112,2000);
+            jedis.auth("123456");
         if (payCode.equals(jedis.get(securityPhone)) && securityPhone.equals(jedis.get(payCode))){
             //验证成功的话删除验证码和双向绑定
             jedis.del(payCode);
@@ -99,7 +101,9 @@ public class PhoneServiceImpl implements PhoneService {
     @Transactional(isolation = Isolation.READ_COMMITTED, propagation = Propagation.REQUIRED)
     public int registerPhone(String phone, String phoneYzm,String username) {
         //先查询手机和验证码是否双向绑定(防止发送失败情况产生多余的验证码)
-        Jedis jedis = new Jedis("localhost", 6379);
+        //打开Redis
+            Jedis jedis = new Jedis("121.43.96.182", 15112,2000);
+            jedis.auth("123456");
         if (phone.equals(jedis.get(phoneYzm)) && phoneYzm.equals(jedis.get(phone))){
             //如果在Redis中存在双向绑定就更新手机号
             userSecurityMapper.updatePhoneByUsername(phone,username);
@@ -137,7 +141,9 @@ public class PhoneServiceImpl implements PhoneService {
         //如果身份证没有被注册
         if (card.isEmpty()) {
             //如果验证码和手机绑定不正确，就返回失败
-            Jedis jedis = new Jedis("localhost", 6379);
+            //打开Redis
+            Jedis jedis = new Jedis("121.43.96.182", 15112,2000);
+            jedis.auth("123456");
             if (phoneSFRZ.equals(jedis.get(phoneCode)) && phoneCode.equals(jedis.get(phoneSFRZ))) {
                 //如果存在则需要更新写入的姓名和身份证
                 userSecurityMapper.updateRealnameAndCardnumberByUsername(realnameSFRZ, cardNumber, username);
@@ -190,7 +196,9 @@ public class PhoneServiceImpl implements PhoneService {
     @Override
     @Transactional(isolation = Isolation.READ_COMMITTED, propagation = Propagation.REQUIRED)
     public int phoneResetPassword(String phoneReset, String phoneResetCode, String phonePassword, String username) {
-        Jedis jedis = new Jedis("localhost", 6379);
+        //打开Redis
+            Jedis jedis = new Jedis("121.43.96.182", 15112,2000);
+            jedis.auth("123456");
         //验证成功更新密码
         if (phoneReset.equals(jedis.get(phoneResetCode)) && phoneResetCode.equals(jedis.get(phoneReset))){
             //删除Redis中双向绑定的验证码

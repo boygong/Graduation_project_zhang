@@ -55,7 +55,9 @@ public class ExamineCustomer {
             //审核通过后则需要按照正常流程走就行
             //设置延迟队列并且检查是否已经获得过一天一次的发表文章的经验值
             //打开Jedis查询是否完成每天的经验值任务
-            Jedis jedis = new Jedis("localhost", 6379);
+            //打开Redis
+            Jedis jedis = new Jedis("121.43.96.182", 15112,2000);
+            jedis.auth("123456");
             if (jedis.get("articleSign-" + userArticle.getArticleAuthorId()) == null) {
                 int seconds= DateTo.getSeconds().intValue();//与明日凌晨的时间秒数差
                 //如果Redis中不存在文章标志，则需要手动设置当天的有效期，并且增加当天的经验值

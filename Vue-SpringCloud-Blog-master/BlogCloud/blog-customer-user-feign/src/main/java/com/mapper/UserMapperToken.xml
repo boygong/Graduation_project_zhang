@@ -34,8 +34,8 @@
 
   <select id="selectPhoneAndMember" resultMap="PhoneAndMemberMap">
     select Phone as phone,member_vip as memberVip,member_svip as memberSvip
-    from user_security,user_member
-    where user_id=member_id and user_id=#{id,jdbcType=BIGINT}
+    from user_security s,user_member m
+    where s.id=m.member_id and s.id=#{id,jdbcType=BIGINT}
   </select>
 
 </mapper>

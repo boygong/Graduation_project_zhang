@@ -11,6 +11,7 @@ spring:
   redis:
     host: 121.43.96.182
     port: 15112
+    password: 123456
   datasource:
     url: jdbc:mysql://127.0.0.1:3306/blog?useUnicode=true&characterEncoding=utf-8&useSSL=false
     username: root #mysql账号

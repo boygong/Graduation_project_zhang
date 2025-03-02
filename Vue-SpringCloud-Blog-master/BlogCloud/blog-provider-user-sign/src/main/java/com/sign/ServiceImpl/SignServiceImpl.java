@@ -56,7 +56,9 @@ public class SignServiceImpl implements SignService {
     @Transactional(isolation = Isolation.READ_COMMITTED, propagation = Propagation.REQUIRED)
     @Override
     public int showSignButton(Long id) {
-        Jedis jedis = new Jedis("localhost", 6379);
+        //打开Redis
+            Jedis jedis = new Jedis("121.43.96.182", 15112,2000);
+            jedis.auth("123456");
         //获取是否存在主键ID是否存在(不存在限时凭证时返回SUCCESS)
         if (jedis.get("Sign-"+id)==null){
             jedis.close();

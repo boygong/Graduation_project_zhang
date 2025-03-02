@@ -104,7 +104,9 @@ public class ArticleThumpServiceImpl implements ArticleThumpService {
                         public void run() {
                             //与明日凌晨的时间秒数差
                             int seconds= DateTo.getSeconds().intValue();
-                            Jedis jedis = new Jedis("localhost", 6379);
+                            //打开Redis
+            Jedis jedis = new Jedis("121.43.96.182", 15112,2000);
+            jedis.auth("123456");
                             try{
                                 if (jedis.get("thumpSign-"+userId)==null){
                                     //如果Redis中不存在文章标志，则需要手动设置当天的有效期，并且增加当天的经验值
