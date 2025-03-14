@@ -4,6 +4,10 @@ import com.whc.cloud.Service.CodeService;
 import com.whc.cloud.Service.MailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -41,9 +45,11 @@ public class EmailController {
     //绑定邮箱按钮验证码
     @CrossOrigin(origins = "http://localhost:8088")
     @PostMapping("/emailButton")
-    public Map<String, Object> emailButton(@RequestParam("email") String email) {
+    public Map<String, Object> emailButton(@RequestParam("email") String email) throws UnsupportedEncodingException {
+        String decodedEmail = URLDecoder.decode(email, String.valueOf(StandardCharsets.UTF_8));
+        System.out.println("解码后的 email：" + decodedEmail);
         Map<String, Object> resultMap = new HashMap<>();
-        int result = mailService.sendEmailNumber(email);
+        int result = mailService.sendEmailNumber(decodedEmail);
         boolean flag = result > 0;
         resultMap.put("success", flag);
         resultMap.put("message", flag ? "邮箱验证码已发送" : "邮箱已经被注册");

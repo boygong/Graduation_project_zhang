@@ -129,7 +129,7 @@
     <include refid="Base_Column_List"/>
     from user_article
     where  article_update_date between #{from,jdbcType=TIMESTAMP} and #{to,jdbcType=TIMESTAMP}
-    and article_is_public=true and article_examine=1
+    and article_is_public=true
     order by article_publish_date desc
   </select>
 

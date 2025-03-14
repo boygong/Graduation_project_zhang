@@ -145,8 +145,6 @@ export default {
           this.reload();
         }
       })
-      console.log("向后端发送验证码信息:", captchaVerifyParam);
-      // 这里应该是实际的 API 请求，你需要替换成你的后端接口
       return {
         captchaResult: true, // 这里模拟验证码成功
         bizResult: true, // 这里模拟业务验证成功

@@ -22,6 +22,9 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import redis.clients.jedis.Jedis;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+import java.nio.charset.StandardCharsets;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Random;
@@ -30,7 +33,7 @@ import java.util.Random;
 public class CodeServiceImpl implements CodeService {
 
     //发送邮件的邮箱
-    private static  String FORM="QQ发送邮箱";
+    private static  String FORM="2270499893@qq.com";
 
     //邮箱的主题(验证码)
     private static  String SUBJECT="邮箱的验证码";
@@ -79,12 +82,13 @@ public class CodeServiceImpl implements CodeService {
             simpleMailMessage.setFrom(FORM);
             simpleMailMessage.setTo(email);
             simpleMailMessage.setSubject(SUBJECT);
-            simpleMailMessage.setText("你的邮箱验证码是: " + emailYzm + "本次验证码会在10分钟后失效，请立马使用。");
+            simpleMailMessage.setText("你博客绑定的邮箱验证码是: " + emailYzm + "本次验证码会在10分钟后失效，请立马使用。");
             //发送邮箱验证码
             javaMailSender.send(simpleMailMessage);
 
             //开启Redis存入email和yzm
-            Jedis jedisEmail = new Jedis("localhost", 6379);
+            Jedis jedisEmail = new Jedis("121.43.96.182", 15112);
+            jedisEmail.auth("123456");
 
             //设置邮箱(key)-验证码(value)的绑定，秒为单位，存在时间为10分钟。
             jedisEmail.set(email, emailYzm);
@@ -94,6 +98,7 @@ public class CodeServiceImpl implements CodeService {
             jedisEmail.set(emailYzm, email);
             jedisEmail.expire(emailYzm, 600);
         }catch (Exception e){
+            e.printStackTrace();
             LOGGER.info("发送邮箱又出错了");
         }
 
@@ -176,6 +181,7 @@ public class CodeServiceImpl implements CodeService {
             //邮箱发送信息
             javaMailSender.send(simpleMailMessage);
         }catch (Exception e){
+            e.printStackTrace();
             LOGGER.info("发送邮箱又出错了");
         }
     }

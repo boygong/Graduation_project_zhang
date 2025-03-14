@@ -3,6 +3,7 @@ package com.Controller;
 import com.Service.UsernameToken;
 import com.feign.UserSecurityFeign;
 import com.tokenauthentication.annotation.AuthToken;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -10,8 +11,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+import java.nio.charset.StandardCharsets;
 import java.util.Map;
 
+@Slf4j
 @RestController
 public class UserSecurityFeignController {
 
@@ -70,7 +75,14 @@ public class UserSecurityFeignController {
     @PostMapping("/emailButtonRequire")
     @AuthToken
     public Map<String, Object> emailButtonRegister(@RequestParam("email") String email) {
-        return userSecurityFeign.emailButton(email);
+        log.info("传入的email值:{}",email);
+        try {
+            String decodedEmail = URLDecoder.decode(email, String.valueOf(StandardCharsets.UTF_8));
+            log.info("解码后的email值:{}",decodedEmail);
+            return userSecurityFeign.emailButton(decodedEmail);
+        } catch (UnsupportedEncodingException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     //判断绑定邮箱的服务消费者(Token)

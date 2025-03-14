@@ -46,9 +46,9 @@ public class MailServiceImpl implements MailService {
         List<UserSecurity> emailRegister = userSecurityMapper.selectAllByEmail(email);
         if (emailRegister.isEmpty()) {
             codeService.sendEmailCode(email);
-            return SUCCESS;
+            return 1;
         }else {
-            return FAILED;
+            return 0;
         }
     }
 

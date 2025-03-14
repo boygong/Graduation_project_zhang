@@ -29,7 +29,7 @@
   </resultMap>
   <sql id="Base_Column_List">
     <!--@mbg.generated-->
-    id, user_id, Username, Email, Phone, RealName, CardNumber, SchoolNumber, School,
+    id, Username, Email, Phone, RealName, CardNumber, SchoolNumber, School,
     CreateTime, UpdateTime
   </sql>
 

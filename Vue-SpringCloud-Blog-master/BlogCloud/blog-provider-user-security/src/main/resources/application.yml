@@ -12,18 +12,21 @@ spring:
     host: smtp.qq.com
     port: 587
     protocol: smtp
-    username: #QQ邮箱账号
-    password: #SMTP密码
+    username: 2270499893@qq.com #QQ邮箱账号
+    password: cwfnxjjxqvcydijg #SMTP密码
     default-encoding: UTF-8
     properties:
       mail:
-       smtp:
-        socketFactory:
-         class: javax.net.ssl.SSLSocketFactory
-        auth: false
-        ssl:
-         enable: false
-       debug: true
+        smtp:
+          starttls:
+            enable: true
+            required: true
+          socketFactory:
+            class: javax.net.ssl.SSLSocketFactory
+          auth: true
+          ssl:
+            enable: false
+        debug: true
   datasource:
     url: jdbc:mysql://127.0.0.1:3306/blog?useUnicode=true&characterEncoding=utf-8&useSSL=false
     username: root #mysql账号
@@ -73,7 +76,7 @@ eureka:
   client:
     serviceUrl:
       defaultZone: http://localhost:8761/eureka/  #设置与Eureka Server的交互地址，查询服务和注册服务都需要这个地址，多个地址可分隔使用.
-#      defaultZone: http://whc:123@EurekaServerTwo:8011/eureka/,http://whc:123@EurekaServerOne:8010/eureka/  #最好是两者都注册
+  #      defaultZone: http://whc:123@EurekaServerTwo:8011/eureka/,http://whc:123@EurekaServerOne:8010/eureka/  #最好是两者都注册
   instance:
     prefer-ip-address: true
 
