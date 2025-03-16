@@ -7,7 +7,7 @@
         </div>
         <br>
         <div class="login-wrap">
-          <h2 style="font-style: italic" class="text-center">基于Vue+SpringCloud博客的设计和实现&emsp;<small>作者-汪海潮</small></h2>
+          <h2 style="font-style: italic" class="text-center">基于Vue+SpringCloud博客的设计和实现&emsp;<small>作者-张哲霄</small></h2>
           <br>
           <br>
           <router-link :to="{name: 'Login'}" style="text-decoration: none;color: #2c3e50" target="_blank">已有账号？马上登录</router-link>

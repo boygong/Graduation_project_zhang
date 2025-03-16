@@ -12,6 +12,12 @@ spring:
   sleuth:
     sampler:
       percentage: 1.0
+  http:
+    multipart:
+      enabled: true
+      max-file-size: 50MB
+      max-request-size: 50MB
+
   datasource:
     url: jdbc:mysql://127.0.0.1:3306/blog?useUnicode=true&characterEncoding=utf-8&useSSL=false
     username: root #mysql账号
@@ -35,6 +41,10 @@ spring:
       testWhileIdle: true
       testOnBorrow: false
       testOnReturn: false
+      #
+      #  spring.servlet.multipart.enabled=true
+      #  spring.servlet.multipart.max-file-size=20MB
+      #  spring.servlet.multipart.max-request-size=200MB
       #这个项目的名字
   application:
     name: blog-provider-user-upload
@@ -64,3 +74,5 @@ spring:
 mybatis:
   mapper-locations: classpath*:com/Mapper/**/*mapper.xml
   type-aliases-package: com.Entity
+
+

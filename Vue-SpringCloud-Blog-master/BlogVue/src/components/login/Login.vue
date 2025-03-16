@@ -8,7 +8,7 @@
         <br>
         <h2 style="font-style: italic" class="text-center">
           基于Vue+SpringCloud博客的设计和实现&emsp;
-          <small>作者-汪海潮</small>
+          <small>作者-张哲霄</small>
         </h2>
         <br><br>
         <div class="login-wrap">

@@ -98,6 +98,7 @@
           //修改博客信息
           xiugaiuser() {
               let patterBlogName = /^.{6,12}$/;
+              console.log(this.delivery,this.blogname,patterBlogName.test(this.blogname));
               if (this.delivery === false || this.blogname === '' || !patterBlogName.test(this.blogname)) {
                   this.$message.error('确认信息按钮');
               } else {

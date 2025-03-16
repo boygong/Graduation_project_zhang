@@ -35,11 +35,11 @@ public class UploadServiceImpl implements UploadService {
     private String endpoint = "http://oss-cn-beijing.aliyuncs.com";
 
     // 我的API
-    private String accessKeyId = "阿里云操作账号";
-    private String accessKeySecret = "阿里云操作密码";
+    private String accessKeyId = "LTAI5tJvQBvWfi8QDJcDxpjN";
+    private String accessKeySecret = "lCMBL3M6NRiv493Kutdjf4gbHSagJ9";
 
     //仓库的名称
-    private String bucketName = "文件存储的位置名称";
+    private String bucketName = "blog-zhangzx";
 
     //日志的输出
     private Logger logger= LoggerFactory.getLogger(UserAvatarServiceImpl.class);

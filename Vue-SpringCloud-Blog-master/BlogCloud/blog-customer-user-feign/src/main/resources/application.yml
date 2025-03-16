@@ -22,6 +22,11 @@ spring:
   sleuth:
     sampler:
       percentage: 1.0
+  http:
+    multipart:
+      enabled: true
+      max-file-size: 50MB
+      max-request-size: 50MB
 eureka:
   client:
     service-url:

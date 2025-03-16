@@ -3,6 +3,11 @@ server:
 spring:
   application:
     name: blog-getway-zuul
+  http:
+    multipart:
+      enabled: true
+      max-file-size: 50MB
+      max-request-size: 50MB
 eureka:
   client:
     service-url:
