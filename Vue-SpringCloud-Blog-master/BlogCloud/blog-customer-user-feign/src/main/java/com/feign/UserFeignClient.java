@@ -27,7 +27,7 @@ public interface UserFeignClient {
     //注册验证的服务消费者
     @RequestMapping(value = "/registerTest", method = RequestMethod.POST)
     public Map<String, Object> register(@RequestParam("newUsername") String newUsername, @RequestParam("newPassword") String newPassword,
-                                        @RequestBody IAcsTokenRequest iAcsTokenRequest);
+                                        @RequestParam("captchaVerifyParam") String captchaVerifyParam);
 
     //修改密码的服务消费者(Token)
     @RequestMapping(value = "/xiugaimima", method = RequestMethod.POST)
@@ -38,7 +38,7 @@ class FeignClientFallback implements UserFeignClient
     {
         //注册用户的fallback
         @Override
-        public Map<String, Object> register(String newUsername, String newPassword,IAcsTokenRequest iAcsTokenRequest) {
+        public Map<String, Object> register(String newUsername, String newPassword,String captchaVerifyParam) {
             Map<String, Object> feignMap = new HashMap<>();
             feignMap.put("message", "注册超时，请重新再试!");
             return feignMap;

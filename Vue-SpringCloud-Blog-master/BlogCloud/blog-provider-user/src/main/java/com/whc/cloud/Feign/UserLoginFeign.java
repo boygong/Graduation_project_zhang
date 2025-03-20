@@ -21,7 +21,7 @@ public interface UserLoginFeign {
 
     @RequestMapping(value = "/registerToken", method = RequestMethod.POST)
     public ResponseTemplate registerToken(@RequestParam("newUsername")String username,@RequestParam("newPassword") String password,
-                                          @RequestBody IAcsTokenRequest iAcsTokenRequest);
+                                          @RequestParam("captchaVerifyParam") String captchaVerifyParam);
 }
 @Component
 class UserLoginFallback implements FallbackFactory<UserLoginFeign>{
@@ -33,7 +33,7 @@ class UserLoginFallback implements FallbackFactory<UserLoginFeign>{
     public UserLoginFeign create(Throwable throwable) {
         return new UserLoginFeign() {
             @Override
-            public ResponseTemplate registerToken(String username, String password,IAcsTokenRequest iAcsTokenRequest) {
+            public ResponseTemplate registerToken(String username, String password,String captchaVerifyParam) {
                UserLoginFallback.LOGGER.info("造成回退的原因是:",throwable);;
                 return ResponseTemplate.builder()
                         .code(401)

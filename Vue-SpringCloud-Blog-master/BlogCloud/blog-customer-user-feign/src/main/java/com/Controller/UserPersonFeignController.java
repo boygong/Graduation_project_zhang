@@ -45,8 +45,8 @@ public class UserPersonFeignController {
     @CrossOrigin(origins = "http://localhost:8088")
     @PostMapping("/register")
     public Map<String,Object> register(@RequestParam("newUsername") String newUsername,@RequestParam("newPassword") String newPassword,
-                                       IAcsTokenRequest iAcsTokenRequest){
-        return this.userFeignClient.register(newUsername, newPassword,iAcsTokenRequest);
+                                       @RequestParam("captchaVerifyParam") String captchaVerifyParam){
+        return this.userFeignClient.register(newUsername, newPassword,captchaVerifyParam);
     }
 
     //注册的个人信息的服务消费者(Token)

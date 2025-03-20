@@ -36,11 +36,11 @@ public class UserController {
     @PostMapping("/registerTest")
     public ResponseTemplate register(@RequestParam("newUsername") String newUsername,
                                      @RequestParam("newPassword") String newPassword,
-                                     @RequestBody IAcsTokenRequest iAcsTokenRequest) {
+                                     @RequestParam("captchaVerifyParam") String captchaVerifyParam) {
         int result = userService.register(newUsername, newPassword);
         if (result > 0) {
             //返还Token给前端
-            return userLoginFeign.registerToken(newUsername, newPassword,iAcsTokenRequest);
+            return userLoginFeign.registerToken(newUsername, newPassword,captchaVerifyParam);
         } else {
             return ResponseTemplate.builder()
                     .code(401)

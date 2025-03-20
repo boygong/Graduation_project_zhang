@@ -41,11 +41,11 @@ public class LoginToken {
     @CrossOrigin(origins = "http://localhost:8088")
     @RequestMapping(value = "/registerToken", method = RequestMethod.POST)
     public ResponseTemplate registerToken(@RequestParam("newUsername")String username,@RequestParam("newPassword") String password,
-                                          @RequestBody IAcsTokenRequest iAcsTokenRequest) throws Exception {
+                                          @RequestParam("captchaVerifyParam") String captchaVerifyParam) throws Exception {
 
-        logger.info(iAcsTokenRequest+"");
-        TestAfsCheckRegister testAfsCheckRegister=new TestAfsCheckRegister();
-        if (testAfsCheckRegister.testRegister(iAcsTokenRequest)==0)
+        logger.info(captchaVerifyParam+"");
+        TestAfsCheck testAfsCheck=new TestAfsCheck();
+        if (testAfsCheck.testLogin(captchaVerifyParam)==0)
         {
             //若存存在多次验证或者验证失败则返回"testFailed"
             return ResponseTemplate.builder()
