@@ -4,7 +4,7 @@ zipkin:
   storage:
     type: elasticsearch
     elasticsearch:
-      hosts: http://localhost:9200
+      hosts: 127.0.0.1:9200
       cluster: elasticsearch
       index: zipkin
       index-shards: 5

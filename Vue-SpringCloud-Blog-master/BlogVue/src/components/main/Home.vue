@@ -40,7 +40,7 @@
        <el-menu-item index="16" disabled></el-menu-item>
        <el-menu-item index="8"><router-link :to="{ name: 'Mine'}" target="_blank" style="text-decoration: none;color: #2c3e50">安全中心</router-link></el-menu-item>
        <el-menu-item index="16" disabled></el-menu-item>
-       <!-- <el-menu-item index="9"><router-link :to="{ name: 'UserMsg'}" target="_blank" style="text-decoration: none;color: #2c3e50">消息中心</router-link></el-menu-item> -->
+       <el-menu-item index="9"><router-link :to="{ name: 'UserMsg'}" target="_blank" style="text-decoration: none;color: #2c3e50">消息中心</router-link></el-menu-item>
        <el-menu-item index="16" disabled></el-menu-item>
        <el-menu-item index="10"><router-link :to="{ name: 'Mine'}" target="_blank" style="text-decoration: none;color: #2c3e50">客服中心</router-link></el-menu-item>
        <el-menu-item index="11" disabled></el-menu-item>
