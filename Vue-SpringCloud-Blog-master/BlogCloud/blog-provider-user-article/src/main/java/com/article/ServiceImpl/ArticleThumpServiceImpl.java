@@ -130,12 +130,12 @@ public class ArticleThumpServiceImpl implements ArticleThumpService {
                                 }
                             }
                             //负载均衡发送点赞信息(必须不是本人点赞，并且文章不在审核期中)
-//                            if (userArticle!=null && userArticle.getArticleExamine() &&
-//                                    !userArticle.getArticleAuthorId().equals(userId)){
-//                                //负载均衡发送点赞消息
-//                                articleMsgFeign.thumpMsg(userId,userArticle.getArticleAuthorId(),blogId,userArticle.getArticleTitle());
-//                                LOGGER.info("发送了一条点赞信息");
-//                            }
+                            if (userArticle!=null && userArticle.getArticleExamine() &&
+                                    !userArticle.getArticleAuthorId().equals(userId)){
+                                //负载均衡发送点赞消息
+                                articleMsgFeign.thumpMsg(userId,userArticle.getArticleAuthorId(),blogId,userArticle.getArticleTitle());
+                                LOGGER.info("发送了一条点赞信息");
+                            }
                         }
                     }).start();
                     return SUCCESS;

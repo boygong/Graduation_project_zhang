@@ -72,9 +72,9 @@
               </div>
             </form>
             <ul class="nav navbar-nav navbar-right">
-              <li>
+              <!-- <li>
                 <a href="#">消息中心</a>
-              </li>
+              </li> -->
               <li class="dropdown">
                 <a class="dropdown-toggle" href="#" data-toggle="dropdown"><el-image :src="rightShow" style="width: 20px;height: 20px"></el-image><strong class="caret"></strong></a>
                 <ul class="dropdown-menu">
