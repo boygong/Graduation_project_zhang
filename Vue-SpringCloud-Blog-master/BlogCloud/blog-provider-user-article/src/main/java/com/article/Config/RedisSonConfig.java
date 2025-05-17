@@ -13,7 +13,7 @@ public class RedisSonConfig {
     @Bean
     public RedissonClient getRedisSon() throws Exception{
         Config config=new Config();
-        config.useSingleServer().setAddress("redis://121.43.96.182:15112").setConnectionPoolSize(10)  // 连接池的最大连接数
+        config.useSingleServer().setAddress("redis://121.43.96.182:15112").setConnectionPoolSize(10).setPassword("123456")  // 连接池的最大连接数
                 .setConnectionMinimumIdleSize(5)  // 连接池中的最小空闲连接数
                 .setTimeout(10000);  // 设置超时
         return Redisson.create(config);

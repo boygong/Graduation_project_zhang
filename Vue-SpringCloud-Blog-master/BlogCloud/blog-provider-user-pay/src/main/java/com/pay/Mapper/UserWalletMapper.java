@@ -5,6 +5,7 @@ import com.pay.Entity.SelectBankcard;
 import com.pay.Entity.SelectBankcardSign;
 import com.pay.Entity.SelectBankcardname;import com.pay.Entity.UserWallet;
 import org.apache.ibatis.annotations.Mapper;import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Update;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -77,4 +78,6 @@ public interface UserWalletMapper {
     //根据主键Id更新余额（消费更新余额）
     int updateMoneyById(@Param("updatedWalletMoney")BigDecimal updatedWalletMoney,@Param("id")Long id);
 
+    @Update("update user_wallet set wallet_money=wallet_money+#{updatedWalletMoney} where id=#{id}")
+    int addMoneyById(@Param("updatedWalletMoney")BigDecimal updatedWalletMoney,@Param("id")Long id);
 }

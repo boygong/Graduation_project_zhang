@@ -7,6 +7,7 @@ import com.pay.Bean.AlipayBean;
 import com.pay.Bean.AlipaySvipBean;
 import com.pay.Entity.UserOrder;
 import com.pay.Mapper.UserOrderMapper;
+import com.pay.Mapper.UserWalletMapper;
 import com.pay.Response.CostResponse;
 import com.pay.Response.DateRequest;
 import com.pay.Response.OrderResponse;
@@ -37,6 +38,9 @@ public class OrderController {
     //发送信息的模板
     @Autowired
     RabbitTemplate rabbitTemplate;
+
+    @Autowired
+    UserWalletMapper userWalletMapper;
 
     //支付宝原始支付
     @CrossOrigin(origins = "http://localhost:8088")
@@ -83,7 +87,7 @@ public class OrderController {
 
         //7、商户订单号和ID绑定并且设置时间10分钟提供给异步通知使用(10分钟内完成支付)
         //打开Redis
-            Jedis jedis = new Jedis("121.43.96.182", 15112,2000);
+            Jedis jedis = new Jedis("121.43.96.182", 15112,10000);
             jedis.auth("123456");
         jedis.set(out_trade_no, id.toString());
         jedis.expire(out_trade_no, 600);
@@ -185,7 +189,7 @@ public class OrderController {
                             @RequestParam("id") Long id) throws AlipayApiException {
         //7、商户订单号和ID绑定并且设置时间10分钟提供给异步通知使用(10分钟内完成支付)，Redis实现的延迟队列。
         //打开Redis
-            Jedis jedis = new Jedis("121.43.96.182", 15112,2000);
+            Jedis jedis = new Jedis("121.43.96.182", 15112,10000);
             jedis.auth("123456");
         jedis.set(out_trade_no, id.toString());
         jedis.expire(out_trade_no, 600);
@@ -203,13 +207,15 @@ public class OrderController {
         //9.获取到返回的订单主键Id
         userOrderMapper.insert(order);
         //10.把订单的主键Id作为生产者发给延迟队列，用RabbitMQ实现的延迟队列。
-        rabbitTemplate.convertAndSend("realExchangeNoCoupon","realQueueKeyNoCoupon",order.getId());
-        //11.返回支付结果
-        return payService.aliPay(new AlipayBean()
-                .setBody(body)
-                .setOut_trade_no(out_trade_no)
-                .setTotal_amount(new StringBuffer().append(total_amount))
-                .setSubject(subject));
+//        rabbitTemplate.convertAndSend("realExchangeNoCoupon","realQueueKeyNoCoupon",order.getId());
+//
+
+        int i = userWalletMapper.addMoneyById(new BigDecimal(total_amount), id);
+        userOrderMapper.updateOrderStatusById(out_trade_no,"支付成功");
+        if (i>0){
+            return "success";
+        }
+        return  "error";
     }
 
 }

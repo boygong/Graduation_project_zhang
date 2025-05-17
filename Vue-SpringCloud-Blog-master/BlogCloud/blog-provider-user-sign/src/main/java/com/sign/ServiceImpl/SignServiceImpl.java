@@ -90,6 +90,7 @@ public class SignServiceImpl implements SignService {
         while (timeService.setTime(id)>0){
             //首先判断是否首次签到（使用连续签到可以消除连续签到失败的情况）
             Long continueSign=userSignMapper.selectContinueBySignId(id);
+            continueSign = continueSign==null?0:continueSign;
             //控制台打印连续签到次数
             logger.info("你的连续签到次数是:"+continueSign);
             if (continueSign==0){
@@ -267,6 +268,7 @@ public class SignServiceImpl implements SignService {
         UserContinuereward userContinuereward=userContinuerewardMapper.selectAllByContinueId(continueId);
         //查询连续签到的次数
         Long continueSign=userSignMapper.selectContinueBySignId(id);
+        continueSign = continueSign==null?0:continueSign;
         //判断连续签到的次数处于哪个阶段
         if (continueSign==0){
             return FAILED;
@@ -331,6 +333,7 @@ public class SignServiceImpl implements SignService {
         Long totalId=userSignMapper.selectIdBySignId(id);
         //查询总数签到的次数
         Long totalSign=userSignMapper.selectTotalSignBySignId(id);
+        totalSign = totalSign==null ? 0 : totalSign;
         //获得总数签到的领取情况
         UserTotalreward userTotalreward=userTotalrewardMapper.selectAllByTotalId(totalId);
         //判断总数签到处于哪个阶段

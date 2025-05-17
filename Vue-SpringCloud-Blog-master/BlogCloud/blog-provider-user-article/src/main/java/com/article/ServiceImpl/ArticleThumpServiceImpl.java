@@ -105,22 +105,19 @@ public class ArticleThumpServiceImpl implements ArticleThumpService {
                             //与明日凌晨的时间秒数差
                             int seconds= DateTo.getSeconds().intValue();
                             //打开Redis
-            Jedis jedis = new Jedis("121.43.96.182", 15112,2000);
-            jedis.auth("123456");
+                            Jedis jedis = new Jedis("121.43.96.182", 15112,600000);
+                            jedis.auth("123456");
                             try{
                                 if (jedis.get("thumpSign-"+userId)==null){
                                     //如果Redis中不存在文章标志，则需要手动设置当天的有效期，并且增加当天的经验值
                                     jedis.set("thumpSign-" + userId, "9");
                                     jedis.expire("thumpSign-" + userId, seconds);
                                     LOGGER.info("点赞文章的时间差为:"+seconds);
-                                    //负载均衡完成点赞每日任务
-                                    articleSignFeign.thumpSign(userId);
                                 }else if (Integer.parseInt(jedis.get("thumpSign-"+userId))>0){
                                     //Redis点赞缓存减少一次机会
                                     jedis.set("thumpSign-"+userId,String.valueOf(Integer.parseInt(jedis.get("thumpSign-"+userId))-1));
                                     jedis.expire("thumpSign-" + userId, seconds);
-                                    //负载均衡完成点赞每日任务
-                                    articleSignFeign.thumpSign(userId);
+
                                 }else {
                                     //次数未0则不再增加经验值
                                     LOGGER.info("次数已经用完不能再获得点赞的经验值");
@@ -133,12 +130,12 @@ public class ArticleThumpServiceImpl implements ArticleThumpService {
                                 }
                             }
                             //负载均衡发送点赞信息(必须不是本人点赞，并且文章不在审核期中)
-                            if (userArticle!=null && userArticle.getArticleExamine() &&
-                                    !userArticle.getArticleAuthorId().equals(userId)){
-                                //负载均衡发送点赞消息
-                                articleMsgFeign.thumpMsg(userId,userArticle.getArticleAuthorId(),blogId,userArticle.getArticleTitle());
-                                LOGGER.info("发送了一条点赞信息");
-                            }
+//                            if (userArticle!=null && userArticle.getArticleExamine() &&
+//                                    !userArticle.getArticleAuthorId().equals(userId)){
+//                                //负载均衡发送点赞消息
+//                                articleMsgFeign.thumpMsg(userId,userArticle.getArticleAuthorId(),blogId,userArticle.getArticleTitle());
+//                                LOGGER.info("发送了一条点赞信息");
+//                            }
                         }
                     }).start();
                     return SUCCESS;

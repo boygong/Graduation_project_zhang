@@ -238,14 +238,15 @@ public class WalletServiceImpl implements WalletService {
                     payMsgFeign.sendSysMsg("用户余额消费","您已购买"+personVipRequest.getSubject()
                             +personVipRequest.getBalanceVip()+"月，一共花费余额"+personVipRequest.getBalanceVip().intValue()
                             +"元，祝您生活愉快!",id);
-                    //再负载均衡完成指定时间的普通会员充值，余额消费不返还任何福利
-                    try {
-                        payMemberFeign.balanceVip(personVipRequest.getBalanceVipNumber(), id);
-                    }catch (Exception e){
-                        LOGGER.info("负载均衡会员出错误了");
-                    }
+
                 }
             });
+            //再负载均衡完成指定时间的普通会员充值，余额消费不返还任何福利
+            try {
+                payMemberFeign.balanceVip(personVipRequest.getBalanceVipNumber(), id);
+            }catch (Exception e){
+                LOGGER.info("负载均衡会员出错误了");
+            }
             //返还成功标志1
             return SUCCESS;
         }

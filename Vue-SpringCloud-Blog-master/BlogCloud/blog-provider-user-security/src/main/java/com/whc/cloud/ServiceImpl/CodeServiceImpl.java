@@ -110,37 +110,40 @@ public class CodeServiceImpl implements CodeService {
 
 
         //生成手机的验证码
-        String phoneYzm= generateVerifyCode(6, EMAIL_CODES);
+        String phoneYzm= "888888";
 
-        //阿里云发送短信的API
-        DefaultProfile profile = DefaultProfile.getProfile("cn-hangzhou", "阿里云操作账号",
-                "阿里云操作密码");
-        IAcsClient client = new DefaultAcsClient(profile);
+//        //阿里云发送短信的API
+//        DefaultProfile profile = DefaultProfile.getProfile("cn-shanghai", "LTAI5tPAp9gPXzL1sgUhQh4Z",
+//                "nddTjq77eL1pwxKJ5dIT5j2ZT0PYJP");
+//        IAcsClient client = new DefaultAcsClient(profile);
+//
+//        CommonRequest request = new CommonRequest();
+//        request.setMethod(MethodType.POST);
+//        request.setDomain("dysmsapi.aliyuncs.com");
+//        request.setVersion("2017-05-25");
+//        request.setAction("SendSms");
+//        request.putQueryParameter("RegionId", "cn-hangzhou");
+//        request.putQueryParameter("PhoneNumbers", phone);
+//        request.putQueryParameter("SignName", "博客的设计与实现的验证码");
+//        request.putQueryParameter("TemplateCode", "模板Code");
+//        request.putQueryParameter("TemplateParam", "{\"codeab\":\""+phoneYzm+"\"}");
 
-        CommonRequest request = new CommonRequest();
-        request.setMethod(MethodType.POST);
-        request.setDomain("dysmsapi.aliyuncs.com");
-        request.setVersion("2017-05-25");
-        request.setAction("SendSms");
-        request.putQueryParameter("RegionId", "cn-hangzhou");
-        request.putQueryParameter("PhoneNumbers", phone);
-        request.putQueryParameter("SignName", "博客的设计与实现的验证码");
-        request.putQueryParameter("TemplateCode", "模板Code");
-        request.putQueryParameter("TemplateParam", "{\"codeab\":\""+phoneYzm+"\"}");
+//        //发送注册手机的验证码
+//        try {
+//            CommonResponse response = client.getCommonResponse(request);
+//            System.out.println(response.getData());
+//
+//        } catch (ServerException e) {
+//            e.printStackTrace();
+//        } catch (ClientException e) {
+//            e.printStackTrace();
+//        }
 
-        //发送注册手机的验证码
-        try {
-            CommonResponse response = client.getCommonResponse(request);
-            System.out.println(response.getData());
 
-        } catch (ServerException e) {
-            e.printStackTrace();
-        } catch (ClientException e) {
-            e.printStackTrace();
-        }
 
         //开启Redis存入phone和yzm
-        Jedis jedisPhone = new Jedis("localhost", 6379);
+        Jedis jedisPhone = new Jedis("121.43.96.182", 15112);
+        jedisPhone.auth("123456");
 
         //设置手机(key)-验证码(value)的绑定，秒为单位，存在时间为10分钟。
         jedisPhone.set(phone,phoneYzm);

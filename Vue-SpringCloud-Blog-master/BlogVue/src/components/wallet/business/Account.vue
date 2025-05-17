@@ -99,16 +99,17 @@
                     }).then(res => {
                         console.log(res);
                         this.showPersonPayResult=true;
-                        let dwSafari;
+                        /* let dwSafari;
                         dwSafari = window.open('http://localhost:8088/payRedirect');
-                        dwSafari.document.open();
-                        let dataObj = res.data;
-                        let html = dataObj.replace(/[^\u0000-\u00FF]/g, function ($0) {
+                        dwSafari.document.open(); */
+                        /* let dataObj = res.data; */
+                        /* let html = dataObj.replace(/[^\u0000-\u00FF]/g, function ($0) {
                             return escape($0).replace(/(%u)(\w{4})/gi, "&#x$2;")
-                        });
-                        dwSafari.document.write("<html><head><title></title><meta charset='utf-8'><body>" + dataObj + "</body></html>");
-                        dwSafari.document.forms[0].submit();
-                        dwSafari.document.close();
+                        }); */
+                        this.$message.success("充值成功!");
+                        /* dwSafari.document.write("<html><head><title></title><meta charset='utf-8'><body>" + dataObj + "</body></html>"); */
+                        /* dwSafari.document.forms[0].submit();
+                        dwSafari.document.close(); */
                     })
                 }
             },

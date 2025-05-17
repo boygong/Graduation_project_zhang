@@ -2,7 +2,10 @@ package com.pay.Mapper;
 
 import com.pay.Entity.UserOrder;
 import com.pay.Response.CostResponse;
-import com.pay.Response.OrderResponse;import org.apache.ibatis.annotations.Mapper;import org.apache.ibatis.annotations.Param;import java.math.BigDecimal;
+import com.pay.Response.OrderResponse;import org.apache.ibatis.annotations.Mapper;import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Update;
+
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
@@ -43,4 +46,6 @@ public interface UserOrderMapper {
     UserOrder selectAllById(@Param("id")Long id);
 
 
+    @Update("update user_order set tradeStatus=#{tradeStatus},receipt_amount=total_amount where out_trade_no = #{out_trade_no}")
+    int updateOrderStatusById(@Param("out_trade_no")String out_trade_no,@Param("tradeStatus")String tradeStatus);
 }
