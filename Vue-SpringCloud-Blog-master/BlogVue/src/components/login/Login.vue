@@ -39,7 +39,7 @@ export default {
       password: "",
       captchaInstance: null, // 存储验证码实例
       captchaVerifyParam: null, //后端参数
-      captchaParam:null,//解析后验证码参数
+      captchaParam: null,//解析后验证码参数
       sig: "ceshi"
     };
   },
@@ -110,12 +110,18 @@ export default {
 
     // ✅ 模拟向后端发送验证码参数
     async sendCaptchaToBackend(captchaVerifyParam) {
-
-      this.$http.post('/whc/blog-customer-user/loginToken', {
-        username: this.username,
-        password: this.password,
-        captchaVerifyParam:captchaVerifyParam
-      }).then(res => {
+      
+      this.$http.post(
+        '/whc/blog-customer-user/loginToken',
+        {
+          username: this.username,
+          password: this.password,
+          captchaVerifyParam: captchaVerifyParam
+        },
+        {
+          timeout: 1000000000 // 设置超时时间为 5000 毫秒（即 5 秒）
+        }
+      ).then(res => {
         console.log(res);
         if (res.data.data.status === 200) {
           console.log(res);

@@ -43,10 +43,10 @@
                 </Row>
                 <br>
                 <Row>
-              <Col span="2">
+             <!--  <Col span="2">
                 开通时长:
-              </Col>
-                  <Col span="6">
+              </Col> -->
+                <!--   <Col span="6">
                       <Button v-on:click="yearCode" type="primary" size="large">
                         1年<span>300便宜60巨划算</span>
                       </Button>
@@ -63,7 +63,7 @@
                   </Col>
                   <Col span="3">
                     支付宝二维码
-                  </Col>
+                  </Col> -->
                 </Row>
                 <Divider/>
                 <Row>
@@ -120,7 +120,7 @@
                 </Row>
                 <br>
                 <Row>
-                  <Col span="2">
+               <!--    <Col span="2">
                     开通时长:
                   </Col>
                   <Col span="6">
@@ -140,7 +140,7 @@
                   </Col>
                   <Col span="3">
                     支付宝原始支付
-                  </Col>
+                  </Col> -->
                 </Row>
               </div>
               <Divider/>

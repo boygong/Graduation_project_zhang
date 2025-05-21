@@ -14,7 +14,7 @@
             <el-menu-item index="3"><el-link href="https://github.com/" target="_blank">GitHub官网</el-link></el-menu-item>
             <el-menu-item index="4" class="el-icon-money"><router-link to="/member" target="_blank"> VIP大会员</router-link></el-menu-item>
             <el-menu-item index="5"><el-link href="https://www.csdn.net/" target="_blank"> CSDN论坛</el-link></el-menu-item>
-            <el-submenu index="6">
+           <!--  <el-submenu index="6">
               <template slot="title">博客分类</template>
               <el-menu-item index="6-1"><router-link :to="{name: 'Test'}" target="_blank" style="color: #2c3e50">测试</router-link></el-menu-item>
               <el-menu-item index="6-2"><router-link :to="{name: 'Operation'}" target="_blank" style="color: #2c3e50">运维</router-link></el-menu-item>
@@ -31,7 +31,7 @@
                 <el-menu-item index="6-7-5"><router-link :to="{name: 'Python'}" target="_blank" style="color: #2c3e50">Python</router-link></el-menu-item>
                 <el-menu-item index="6-7-6"><router-link :to="{name: 'Go'}" target="_blank" style="color: #2c3e50">GO</router-link></el-menu-item>
               </el-submenu>
-            </el-submenu>
+            </el-submenu> -->
             <el-menu-item index="7"><router-link to="/home" target="_blank"> 热门博客排行榜</router-link></el-menu-item>
       <el-menu-item index="21" disabled></el-menu-item>
         <el-menu-item index="22">
@@ -158,15 +158,15 @@
           </el-menu-item-group>
         </el-submenu>
 
-        <el-submenu index="4">
+       <!--  <el-submenu index="4">
           <template slot="title">
             <i class="el-icon-loading"></i>
             <span> 消息中心</span>
           </template>
           <el-menu-item-group>
-            <el-menu-item index="4-1" class="el-icon-s-opportunity">&nbsp;
+            <el-menu-item index="4-1" class="el-icon-s-opportunity">&nbsp; -->
               <!-- 消息中心 -->
-              <el-button type="text" @click="systemmessage = true">系统通知</el-button>
+              <!-- <el-button type="text" @click="systemmessage = true">系统通知</el-button>
 
               <el-dialog title="系统通知" :visible.sync="systemmessage">
                 <el-form>
@@ -178,9 +178,9 @@
                 </div>
               </el-dialog>
             </el-menu-item>
-            <el-menu-item index="4-2" class="el-icon-s-comment">&nbsp;
+            <el-menu-item index="4-2" class="el-icon-s-comment">&nbsp; -->
               <!-- 私人消息 -->
-              <el-button type="text" @click="personmessage = true">私人通知</el-button>
+             <!--  <el-button type="text" @click="personmessage = true">私人通知</el-button>
 
               <el-dialog title="私人消息" :visible.sync="personmessage">
                 <el-form>
@@ -193,15 +193,14 @@
               </el-dialog>
             </el-menu-item>
           </el-menu-item-group>
-        </el-submenu>
-        <el-submenu index="5">
+        </el-submenu> -->
+      <!--   <el-submenu index="5">
           <template slot="title">
             <i class="el-icon-upload"></i>
             <span> 私密空间</span>
           </template>
           <el-menu-item-group>
             <el-menu-item index="5-1" class="el-icon-s-opportunity">&nbsp;
-              <!-- 私密中心 -->
               <el-button type="text" @click="cloud = true">博客云</el-button>
 
               <el-dialog title="收货地址" :visible.sync="cloud">
@@ -215,7 +214,6 @@
               </el-dialog>
             </el-menu-item>
             <el-menu-item index="5-2" class="el-icon-s-comment">&nbsp;
-              <!-- 我的相册的Form -->
               <el-button type="text" @click="picture = true">我的相册</el-button>
 
               <el-drawer
@@ -235,15 +233,14 @@
               </el-drawer>
             </el-menu-item>
           </el-menu-item-group>
-        </el-submenu>
-        <el-submenu index="6">
+        </el-submenu> -->
+       <!--  <el-submenu index="6">
           <template slot="title">
             <i class="el-icon-female"></i>
             <span> 客服中心</span>
           </template>
           <el-menu-item-group>
             <el-menu-item index="6-1" class="el-icon-s-flag">&nbsp;
-              <!-- Form -->
               <el-button type="text" @click="kefufankui = true">客服反馈</el-button>
 
               <el-dialog title="你的意见是对我们最大的进步" :visible.sync="kefufankui">
@@ -266,7 +263,6 @@
               </el-dialog>
             </el-menu-item>
             <el-menu-item index="6-2" class="el-icon-chat-square">&nbsp;
-              <!-- Form -->
               <el-button type="text" @click="kefuOnline = true">在线聊天</el-button>
 
               <el-drawer
@@ -290,7 +286,7 @@
               </el-drawer>
             </el-menu-item>
           </el-menu-item-group>
-        </el-submenu>
+        </el-submenu> -->
       </el-menu>
     </el-col>
     <router-view/>

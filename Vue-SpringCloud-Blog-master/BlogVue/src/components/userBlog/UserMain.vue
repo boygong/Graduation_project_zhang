@@ -13,7 +13,7 @@
           <el-menu-item disabled></el-menu-item>
           <el-menu-item ><router-link target="_blank" style="text-decoration: none"  :to="{name: 'Article'}">博客主页</router-link></el-menu-item>
           <el-menu-item disabled></el-menu-item>
-          <el-menu-item ><router-link target="_blank" style="text-decoration: none"  :to="{name: 'Recommend'}">博客分类主页</router-link></el-menu-item>
+          <!-- <el-menu-item ><router-link target="_blank" style="text-decoration: none"  :to="{name: 'Recommend'}">博客分类主页</router-link></el-menu-item> -->
           <el-menu-item disabled></el-menu-item>
           <el-menu-item ><el-link style="text-decoration: none" href="https://github.com/" target="_blank">GitHub官网</el-link></el-menu-item>
           <el-menu-item disabled></el-menu-item>

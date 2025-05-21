@@ -17,7 +17,7 @@
        <el-menu-item index="19" disabled></el-menu-item>
        <el-menu-item index="2" ><router-link :to="{name: 'Recommend'}" style="text-decoration: none;color: #2c3e50"  target="_blank">博客大全</router-link></el-menu-item>
        <el-menu-item index="19" disabled></el-menu-item>
-       <el-submenu index="6">
+      <!--  <el-submenu index="6">
          <template slot="title"><span style="color: #2c3e50">博客分类</span></template>
          <el-menu-item index="6-1"><router-link :to="{name: 'Test'}" target="_blank" style="text-decoration: none;color: #2c3e50">测试</router-link></el-menu-item>
          <el-menu-item index="6-2"><router-link :to="{name: 'Operation'}" target="_blank" style="text-decoration: none;color: #2c3e50">运维</router-link></el-menu-item>
@@ -33,7 +33,7 @@
            <el-menu-item index="6-7-4"><router-link :to="{name: 'PHP'}" target="_blank" style="text-decoration: none;color: #2c3e50">PHP</router-link></el-menu-item>
            <el-menu-item index="6-7-5"><router-link :to="{name: 'Python'}" target="_blank" style="text-decoration: none;color: #2c3e50">Python</router-link></el-menu-item>
            <el-menu-item index="6-7-6"><router-link :to="{name: 'Go'}" target="_blank" style="text-decoration: none;color: #2c3e50">GO</router-link></el-menu-item>
-         </el-submenu>
+         </el-submenu> -->
        </el-submenu>
        <el-menu-item index="19" disabled></el-menu-item>
        <el-menu-item index="3"><router-link :to="{name: 'Power'}" style="text-decoration: none;color: #2c3e50"  target="_blank"> VIP大会员</router-link></el-menu-item>
@@ -44,14 +44,14 @@
        <el-menu-item index="16" disabled></el-menu-item>
        <el-menu-item index="10"><router-link :to="{ name: 'Mine'}" target="_blank" style="text-decoration: none;color: #2c3e50">客服中心</router-link></el-menu-item>
        <el-menu-item index="11" disabled></el-menu-item>
-       <el-menu-item index="12">
+      <!--  <el-menu-item index="12">
          <el-autocomplete
            v-model="state"
            :fetch-suggestions="querySearchAsync"
            placeholder="查找文章"
            @select="handleSelectAll"
          ></el-autocomplete>
-       </el-menu-item>
+       </el-menu-item> -->
        <el-submenu index="14">
          <template slot="title"><span style="color: #2c3e50">博客个人中心</span></template>
          <el-menu-item index="14-1"><router-link :to="{name: 'UserPublish'}" style="text-decoration: none;color: #2c3e50" target="_blank">发表博客</router-link></el-menu-item>
